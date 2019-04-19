@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baizhi.dao.ChapterDao">
+    <resultMap id="p1" type="com.baizhi.entity.Chapter">
+        <result column="chapter_id" property="id"/>
+        <result column="title" property="title"/>
+        <result column="size" property="size"/>
+        <result column="duration" property="duration"/>
+        <result column="publish_date" property="publishDate"/>
+        <result column="download_path" property="downloadPath"/>
+    </resultMap>
+    <select id="selectByAlbumId" resultMap="p1">
+        select *
+        from t_chapter
+        where album_id = #{id}
+    </select>
+    <insert id="insert">
+        insert into t_chapter
+        VALUES (null, #{title}, #{size}, '0', #{publishDate}, #{downloadPath}, #{albumId})
+    </insert>
+    <select id="selectOne" resultMap="p1">
+        select *
+        from t_chapter
+        where chapter_id = #{id}
+    </select>
+</mapper>
