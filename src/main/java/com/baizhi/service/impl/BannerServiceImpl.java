@@ -42,4 +42,9 @@ public class BannerServiceImpl implements BannerService {
     public void delete(Integer id) {
         bannerDao.deleteByPrimaryKey(id);
     }
+
+    @Override
+    public List<Banner> select() {
+        return bannerDao.selectAll();
+    }
 }

@@ -138,10 +138,7 @@
                 if (data.isInsert) {
                     $("#insertAlbumDiv").dialog("close")
                     $('#tt_album').treegrid("reload");
-                    $("#atitle").val("");
-                    $("#aauthor").val("");
-                    $("#aboardcast").val("");
-                    $("#abrief").val("");
+                    $("#insertAlbumForm").form("reset");
                 } else {
                     alert("添加失败！！");
                 }
@@ -167,7 +164,7 @@
                 if (data.isInsert) {
                     $("#insertChapterDiv").dialog("close")
                     $('#tt_album').treegrid("reload");
-                    $("#ctitle").val("");
+                    $("#insertChapterForm").form("reset");
                 }
             }
         })

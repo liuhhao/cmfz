@@ -11,16 +11,20 @@ import java.io.File;
  * @Date: 2019/4/16  1:03
  */
 public class AudioUtil {
-    public static Long getDuration(File source) {
+    public static String getDuration(File source) {
         Encoder encoder = new Encoder();
-        long ls = 0;
+        String time = "";
         try {
             MultimediaInfo m = encoder.getInfo(source);
-            ls = m.getDuration() / 1000;
+            long ls = m.getDuration() / 1000;
+            long hh = ls / 3600;
+            long mm = ls % 3600 / 60;
+            long ss = ls % 60;
+            time = hh + ":" + mm + ":" + ss;
         } catch (EncoderException e) {
             e.printStackTrace();
             System.out.println("获取文件时长失败：" + e.getMessage());
         }
-        return ls;
+        return time;
     }
 }

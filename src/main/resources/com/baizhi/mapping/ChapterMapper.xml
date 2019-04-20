@@ -18,7 +18,7 @@
     </select>
     <insert id="insert">
         insert into t_chapter
-        VALUES (null, #{title}, #{size}, '0', #{publishDate}, #{downloadPath}, #{albumId})
+        VALUES (null, #{title}, #{size}, #{duration}, #{publishDate}, #{downloadPath}, #{albumId})
     </insert>
     <select id="selectOne" resultMap="p1">
         select *

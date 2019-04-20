@@ -50,6 +50,22 @@
         handler: function () {
             $('#dg_banner').edatagrid('saveRow');
         }
+    }, '-', {
+        iconCls: 'icon-back',
+        text: '导出',
+        handler: function () {
+            $.ajax({
+                url: "${pageContext.request.contextPath}/album/export",
+                success: function (data) {
+                    data = JSON.parse(data);
+                    if (data.isExport) {
+                        alert("导出成功")
+                    } else {
+                        alert("导出失败")
+                    }
+                }
+            })
+        }
     }];
     $('#dg_banner').edatagrid({
         method: "get",
