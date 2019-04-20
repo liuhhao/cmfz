@@ -6,6 +6,7 @@ import com.baizhi.dao.BannerDao;
 import com.baizhi.service.AlbumService;
 import com.baizhi.service.BannerService;
 import com.baizhi.service.ChapterService;
+import com.baizhi.service.UserService;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.ss.usermodel.*;
 import org.junit.Test;
@@ -33,7 +34,16 @@ public class CmfzApplicationTests {
     private AlbumService albumService;
     @Autowired
     private ChapterService chapterService;
+    @Autowired
+    private UserService userService;
 
+    @Test
+    public void testUser() {
+        List<User> users = userService.selectAll();
+        for (User user : users) {
+            System.out.println(user);
+        }
+    }
     @Test
     public void contextLoads() {
 
