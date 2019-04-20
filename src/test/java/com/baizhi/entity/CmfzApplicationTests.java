@@ -1,13 +1,13 @@
 package com.baizhi.entity;
 
+import cn.afterturn.easypoi.excel.ExcelExportUtil;
+import cn.afterturn.easypoi.excel.entity.ExportParams;
 import com.baizhi.dao.BannerDao;
 import com.baizhi.service.AlbumService;
 import com.baizhi.service.BannerService;
+import com.baizhi.service.ChapterService;
 import org.apache.poi.hssf.usermodel.*;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Font;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +16,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
@@ -30,6 +31,8 @@ public class CmfzApplicationTests {
     private BannerService bannerService;
     @Autowired
     private AlbumService albumService;
+    @Autowired
+    private ChapterService chapterService;
 
     @Test
     public void contextLoads() {
@@ -40,7 +43,6 @@ public class CmfzApplicationTests {
             System.out.println(banner);
         }
     }
-
     @Test
     public void test1() {
         List<Album> list = albumService.selectAll();
@@ -48,7 +50,6 @@ public class CmfzApplicationTests {
             System.out.println(album);
         }
     }
-
     @Test
     public void testPOI() {
         //创建文件簿
@@ -84,7 +85,6 @@ public class CmfzApplicationTests {
             e.printStackTrace();
         }
     }
-
     @Test
     public void testImport() {
         try {
@@ -105,5 +105,31 @@ public class CmfzApplicationTests {
         }
     }
 
+    @Test
+    public void TestEasyPoi1() {
+        List<Chapter> chapters = chapterService.selectAll();
+        Workbook workbook = ExcelExportUtil.exportExcel(new ExportParams("计算机一班学生", "学生"),
+                Chapter.class, chapters);
+        try {
+            workbook.write(new FileOutputStream(new File("D:/easypoi.xls")));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void TestEasyPoi2() {
+        List<Album> albums = albumService.selectAll();
+        for (Album album : albums) {
+            album.setImgPath("D:/idea_project2018/cmfz/src/main/webapp" + album.getImgPath());
+        }
+        Workbook workbook = ExcelExportUtil.exportExcel(new ExportParams("专辑详情", "专辑"),
+                Album.class, albums);
+        try {
+            workbook.write(new FileOutputStream(new File("D:/easypoi.xls")));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

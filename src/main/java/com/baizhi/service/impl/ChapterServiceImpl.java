@@ -27,4 +27,9 @@ public class ChapterServiceImpl implements ChapterService {
     public Chapter selectOne(Integer id) {
         return chapterDao.selectOne(id);
     }
+
+    @Override
+    public List<Chapter> selectAll() {
+        return chapterDao.selectAll();
+    }
 }

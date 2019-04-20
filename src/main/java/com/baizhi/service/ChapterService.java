@@ -10,4 +10,6 @@ public interface ChapterService {
     public void insert(Chapter chapter);
 
     public Chapter selectOne(Integer id);
+
+    public List<Chapter> selectAll();
 }

@@ -54,17 +54,7 @@
         iconCls: 'icon-back',
         text: '导出',
         handler: function () {
-            $.ajax({
-                url: "${pageContext.request.contextPath}/album/export",
-                success: function (data) {
-                    data = JSON.parse(data);
-                    if (data.isExport) {
-                        alert("导出成功")
-                    } else {
-                        alert("导出失败")
-                    }
-                }
-            })
+            window.location = "${pageContext.request.contextPath}/banner/export"
         }
     }];
     $('#dg_banner').edatagrid({

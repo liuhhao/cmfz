@@ -83,6 +83,12 @@
                 window.location = "${pageContext.request.contextPath}/album/download.do?title=" + node.title + "&downloadPath=" + node.downloadPath
             }
         }
+    }, '-', {
+        iconCls: 'icon-redo',
+        text: '导出',
+        handler: function () {
+            window.location = "${pageContext.request.contextPath}/album/export"
+        }
     }];
     $('#tt_album').treegrid({
         method: 'post',

@@ -25,4 +25,8 @@
         from t_chapter
         where chapter_id = #{id}
     </select>
+    <select id="selectAll" resultMap="p1">
+        select *
+        from t_chapter
+    </select>
 </mapper>
