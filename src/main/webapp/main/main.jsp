@@ -13,6 +13,8 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/datagrid-detailview.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.edatagrid.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/easyui-lang-zh_CN.js"></script>
+    <script src="../js/echarts.min.js"></script>
+    <script src="../js/china.js"></script>
     <script type="text/javascript">
         <!--菜单处理-->
     </script>

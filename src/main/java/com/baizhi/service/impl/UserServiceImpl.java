@@ -17,4 +17,9 @@ public class UserServiceImpl implements UserService {
     public List<User> selectAll() {
         return userDao.selectAll();
     }
+
+    @Override
+    public Integer selectRegisterCount(Integer count) {
+        return userDao.selectRegisterCount(count);
+    }
 }

@@ -181,6 +181,7 @@ public class AlbumController {
         }
         Workbook workbook = ExcelExportUtil.exportExcel(new ExportParams("专辑详情", "专辑"),
                 Album.class, albums);
+        //将文件以流的形式输出出去，并且输出的同时给它设置响应文件名
         String encode = null;
         try {
             encode = URLEncoder.encode("专辑详情.xls", "UTF-8");

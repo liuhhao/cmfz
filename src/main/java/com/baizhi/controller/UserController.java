@@ -1,6 +1,8 @@
 package com.baizhi.controller;
 
+import com.baizhi.entity.MapUser;
 import com.baizhi.entity.User;
+import com.baizhi.service.MapUserService;
 import com.baizhi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,8 @@ import java.util.Map;
 public class UserController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private MapUserService mapUserService;
 
     @RequestMapping("selectAll")
     @ResponseBody
@@ -24,6 +28,32 @@ public class UserController {
         Map map = new HashMap();
         List<User> list = userService.selectAll();
         map.put("rows", list);
+        return map;
+    }
+
+    @RequestMapping("selectRegisterCount")
+    @ResponseBody
+    public Map selectRegisterCount() {
+        //根据传递的参数（近一周，近两周，近三周....）查询出注册的人数，然后添加进一个数组中
+        Map map = new HashMap();
+        Integer integer1 = userService.selectRegisterCount(7);
+        Integer integer2 = userService.selectRegisterCount(14);
+        Integer integer3 = userService.selectRegisterCount(21);
+        int[] ints = {integer1, integer2, integer3};
+        String[] str = {"近一周", "近两周", "近三周"};
+        map.put("xAxisData", str);
+        map.put("seriesData", ints);
+        return map;
+    }
+
+    @RequestMapping("selectToMap")
+    @ResponseBody
+    public Map selectToMap() {
+        Map map = new HashMap();
+        List<MapUser> maleList = mapUserService.selectToMap(1);
+        List<MapUser> femaleList = mapUserService.selectToMap(0);
+        map.put("male", maleList);
+        map.put("female", femaleList);
         return map;
     }
 }

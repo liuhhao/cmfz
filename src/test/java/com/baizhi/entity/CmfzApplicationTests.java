@@ -2,11 +2,9 @@ package com.baizhi.entity;
 
 import cn.afterturn.easypoi.excel.ExcelExportUtil;
 import cn.afterturn.easypoi.excel.entity.ExportParams;
+import com.alibaba.fastjson.JSON;
 import com.baizhi.dao.BannerDao;
-import com.baizhi.service.AlbumService;
-import com.baizhi.service.BannerService;
-import com.baizhi.service.ChapterService;
-import com.baizhi.service.UserService;
+import com.baizhi.service.*;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.ss.usermodel.*;
 import org.junit.Test;
@@ -36,6 +34,8 @@ public class CmfzApplicationTests {
     private ChapterService chapterService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private MapUserService mapUserService;
 
     @Test
     public void testUser() {
@@ -140,6 +140,13 @@ public class CmfzApplicationTests {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Test
+    public void test() {
+        List<MapUser> mapUsers = mapUserService.selectToMap(1);
+        String s1 = JSON.toJSONString(mapUsers);
+        System.out.println(s1);
     }
 
 }
