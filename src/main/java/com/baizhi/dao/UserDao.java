@@ -8,4 +8,6 @@ public interface UserDao {
     public List<User> selectAll();
 
     public Integer selectRegisterCount(Integer count);
+
+    void insert(User user);
 }

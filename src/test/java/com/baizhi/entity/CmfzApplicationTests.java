@@ -5,6 +5,7 @@ import cn.afterturn.easypoi.excel.entity.ExportParams;
 import com.alibaba.fastjson.JSON;
 import com.baizhi.dao.BannerDao;
 import com.baizhi.service.*;
+import io.goeasy.GoEasy;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.ss.usermodel.*;
 import org.junit.Test;
@@ -149,4 +150,20 @@ public class CmfzApplicationTests {
         System.out.println(s1);
     }
 
+    @Test
+    public void testGoeasy() {
+        GoEasy goEasy = new GoEasy("http(s)://rest-hangzhou.goeasy.io", "BC-aa89e6a744874dab84688d9b524dfdae");
+        goEasy.publish("my_channel", "Hello, GoEasy!");
+    }
+
+    @Autowired
+    private MenuService menuService;
+
+    @Test
+    public void TestMenu() {
+        List<Menu> menus = menuService.selectAll();
+        for (Menu menu : menus) {
+            System.out.println("menu = " + menu);
+        }
+    }
 }

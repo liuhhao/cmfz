@@ -11,10 +11,10 @@ spring:
     url: jdbc:mysql://localhost:3306/cmfz
     username: root
     password: 123456
-  mvc:
-    view:
-      prefix: /
-      suffix: .jsp
+  #  mvc:
+  #    view:
+  #      prefix: /
+  #      suffix: .jsp
   http:
     encoding:
       charset: utf-8

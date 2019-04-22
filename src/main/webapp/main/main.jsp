@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/themes/IconExtension.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/themes/icon.css">
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+    <script type="text/javascript" src="http://cdn-hangzhou.goeasy.io/goeasy.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.easyui.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/datagrid-detailview.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.edatagrid.js"></script>
@@ -55,7 +56,7 @@
 </body>
 <script>
     $.ajax({
-        type: "get",
+        type: "post",
         url: "${pageContext.request.contextPath}/menu/selectAll.do",
         dataType: "JSON",
         success: function (data) {

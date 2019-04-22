@@ -1,7 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 
-
 <table id="dg_banner"></table>
 <div id="dd_banner" class="easyui-dialog" title="My Dialog" style="width:400px;height:200px;"
      data-options="iconCls:'icon-save',resizable:true,modal:true,closed:true,
@@ -29,7 +28,8 @@
         iconCls: 'icon-add',
         text: '添加',
         handler: function () {
-            $('#dd_banner').dialog('open');
+            console.log(1111111)
+            $("#dd_banner").dialog("open");
 
         }
     }, '-', {
@@ -58,7 +58,7 @@
         }
     }];
     $('#dg_banner').edatagrid({
-        method: "get",
+        method: "post",
         url: "${pageContext.request.contextPath}/banner/selectAll.do",
         saveUrl: "${pageContext.request.contextPath}/banner/updateStatus.do",
         updateUrl: "${pageContext.request.contextPath}/banner/updateStatus.do",
@@ -90,10 +90,11 @@
         $('#ff').form('submit', {
             url: '${pageContext.request.contextPath}/banner/insert',
             success: function (data) {
+                console.log(data)
                 data = JSON.parse(data);
                 if (data.isInsert) {
                     $("#dd_banner").dialog("close");
-                    $('#dg_banner').datagrid("reload");
+                    $('#dg_banner').edatagrid("reload");
                 }
             }
         });

@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -54,6 +56,19 @@ public class UserController {
         List<MapUser> femaleList = mapUserService.selectToMap(0);
         map.put("male", maleList);
         map.put("female", femaleList);
+        return map;
+    }
+
+    @RequestMapping("regist")
+    @ResponseBody
+    public Map regist(User user, MultipartFile file1, HttpSession session) {
+        Map map = new HashMap();
+        try {
+            userService.regist(user, file1, session);
+            map.put("flag", true);
+        } catch (Exception e) {
+            map.put("flag", false);
+        }
         return map;
     }
 }

@@ -28,4 +28,9 @@
         from t_user
         where DATEDIFF(NOW(), create_date) &lt; #{count}
     </select>
+    <insert id="insert">
+        insert into t_user
+        values (#{id}, #{name}, #{dharma}, #{sex}, #{province}, #{city}, #{sign}, #{status}, #{phone}, #{password},
+                #{salt}, #{headImg}, #{createDate}, null)
+    </insert>
 </mapper>
