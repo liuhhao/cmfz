@@ -91,8 +91,9 @@
                 console.log(data)
                 data = JSON.parse(data);
                 if (data.isInsert) {
+                    $("#abc").form("reset");
                     $("#dd_bannersss").dialog("close");
-                    $('#dg_bannersss').edatagrid("reload");
+                    $('#dg_banner').edatagrid("reload");
                 }
             }
         });
