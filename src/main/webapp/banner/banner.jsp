@@ -2,20 +2,20 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 
 <table id="dg_banner"></table>
-<div id="dd_banner" class="easyui-dialog" title="My Dialog" style="width:400px;height:200px;"
+<div id="dd_bannersss" class="easyui-dialog" title="My Dialog" style="width:400px;height:200px;"
      data-options="iconCls:'icon-save',resizable:true,modal:true,closed:true,
                 buttons:[{
                     text:'保存',
                     handler:function(){
                         addBanner();
-                },{
+                }},{
                     text:'关闭',
                     handler:function(){
                         closeBanner();
                     }
                 }]">
 
-    <form id="ff" method="post" enctype="multipart/form-data">
+    <form id="abc" method="post" enctype="multipart/form-data">
         <div>
             <label for="name">标题:</label>
             <input id="name" class="easyui-validatebox" type="text" name="title" data-options="required:true"/>
@@ -28,9 +28,7 @@
         iconCls: 'icon-add',
         text: '添加',
         handler: function () {
-            console.log(1111111)
-            $("#dd_banner").dialog("open");
-
+            $("#dd_bannersss").dialog("open");
         }
     }, '-', {
         iconCls: 'icon-edit',
@@ -87,20 +85,19 @@
     });
 
     function addBanner() {
-        $('#ff').form('submit', {
+        $('#abc').form('submit', {
             url: '${pageContext.request.contextPath}/banner/insert',
             success: function (data) {
                 console.log(data)
                 data = JSON.parse(data);
                 if (data.isInsert) {
-                    $("#dd_banner").dialog("close");
-                    $('#dg_banner').edatagrid("reload");
+                    $("#dd_bannersss").dialog("close");
+                    $('#dg_bannersss').edatagrid("reload");
                 }
             }
         });
     }
-
     function closeBanner() {
-        $("#dd_banner").dialog("close")
+        $("#dd_bannersss").dialog("close")
     }
 </script>

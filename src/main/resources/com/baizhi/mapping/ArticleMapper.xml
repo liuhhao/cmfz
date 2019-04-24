@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baizhi.dao.ArticleDao">
+    <resultMap id="p1" type="com.baizhi.entity.Article">
+        <result column="article_id" property="articleId"/>
+        <result column="title" property="title"/>
+        <result column="img_path" property="imgPath"/>
+        <result column="content" property="content"/>
+        <result column="publish_date" property="publishDate"/>
+        <result column="status" property="status"/>
+        <result column="master_id" property="masterId"/>
+    </resultMap>
+    <select id="selectListByUid" resultMap="p1">
+        select *
+        from t_article
+        where master_id = (
+            select master_id
+            from t_user
+            where id = #{uid})
+    </select>
+</mapper>

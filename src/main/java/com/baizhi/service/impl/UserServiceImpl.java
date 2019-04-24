@@ -3,6 +3,7 @@ package com.baizhi.service.impl;
 import com.baizhi.dao.UserDao;
 import com.baizhi.entity.User;
 import com.baizhi.service.UserService;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -10,9 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -41,10 +40,29 @@ public class UserServiceImpl implements UserService {
         user.setId(uuid);
         user.setCreateDate(new Date());
         user.setHeadImg("/images/imgUser/" + uuid + s);
-        user.setSalt("??");
+        user.setPassword(DigestUtils.md5Hex(user.getPassword() + user.getName()));
+        user.setSalt(user.getName());
         user.setStatus(1);
         //System.err.println(user);
         userDao.insert(user);
 
+    }
+
+    @Override
+    public Map insert(User user) {
+        Map map = new HashMap();
+        try {
+            user.setPassword(DigestUtils.md5Hex(user.getPassword() + user.getName()));
+            User user1 = userDao.selectOne(user);
+            if (user1 != null) {
+                map.put("isLogin", true);
+            } else {
+                map.put("isLogin", false);
+            }
+        } catch (Exception e) {
+            map.put("isLogin", false);
+            e.printStackTrace();
+        }
+        return map;
     }
 }

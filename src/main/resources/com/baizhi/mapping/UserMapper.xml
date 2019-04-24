@@ -33,4 +33,10 @@
         values (#{id}, #{name}, #{dharma}, #{sex}, #{province}, #{city}, #{sign}, #{status}, #{phone}, #{password},
                 #{salt}, #{headImg}, #{createDate}, null)
     </insert>
+    <select id="selectOne" resultMap="p1">
+        select *
+        from t_user
+        where name = #{name}
+          and password = #{password}
+    </select>
 </mapper>

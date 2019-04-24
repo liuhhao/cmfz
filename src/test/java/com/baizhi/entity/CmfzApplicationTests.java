@@ -6,6 +6,7 @@ import com.alibaba.fastjson.JSON;
 import com.baizhi.dao.BannerDao;
 import com.baizhi.service.*;
 import io.goeasy.GoEasy;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.ss.usermodel.*;
 import org.junit.Test;
@@ -21,6 +22,7 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -165,5 +167,37 @@ public class CmfzApplicationTests {
         for (Menu menu : menus) {
             System.out.println("menu = " + menu);
         }
+    }
+
+    @Autowired
+    private ArticleService articleService;
+
+    @Test
+    public void TestArticle() {
+        List<Article> articles = articleService.selectAll();
+        for (Article article : articles) {
+            System.out.println(article);
+        }
+    }
+
+    @Autowired
+    private IndexService indexService;
+
+    @Test
+    public void TestIndex() {
+/*        Object o = indexService.returnIndex("bbb", "all", "ssyj");
+        String s = JSON.toJSONString(o);
+        System.out.println(s);*/
+        Object aa = indexService.wen(null);
+        String s = JSON.toJSONString(aa);
+        System.out.println(s);
+    }
+
+    @Test
+    public void TestMd5() {
+        String s = UUID.randomUUID().toString();
+        String substring = s.substring(5, 9);
+        String str = DigestUtils.md5Hex("123456" + substring);
+        System.out.println(str);
     }
 }

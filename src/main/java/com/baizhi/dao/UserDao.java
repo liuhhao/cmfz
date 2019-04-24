@@ -10,4 +10,6 @@ public interface UserDao {
     public Integer selectRegisterCount(Integer count);
 
     void insert(User user);
+
+    User selectOne(User user);
 }

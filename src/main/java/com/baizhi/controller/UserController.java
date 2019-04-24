@@ -71,4 +71,11 @@ public class UserController {
         }
         return map;
     }
+
+    @RequestMapping("login")
+    @ResponseBody
+    public Map login(User user) {
+        System.out.println(user);
+        return userService.insert(user);
+    }
 }
