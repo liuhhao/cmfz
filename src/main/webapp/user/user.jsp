@@ -31,7 +31,7 @@
     }];
     $('#dg_user').edatagrid({
         method: "post",
-        url: "${pageContext.request.contextPath}/user/selectAll",
+        url: "${pageContext.request.contextPath}/user/selectByPage",
         toolbar: tb,
         fit: true,
         pagination: true,

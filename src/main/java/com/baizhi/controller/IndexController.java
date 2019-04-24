@@ -27,7 +27,6 @@ public class IndexController {
     @RequestMapping("downloadChapter")
     @ResponseBody
     public Object downloadChapter(String uid, Integer chapterId) {
-
         return indexService.downloadChapter(uid, chapterId);
     }
 }

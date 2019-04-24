@@ -23,14 +23,10 @@ public class UserController {
     @Autowired
     private MapUserService mapUserService;
 
-    @RequestMapping("selectAll")
+    @RequestMapping("selectByPage")
     @ResponseBody
-    public Map selectAll() {
-        System.out.println(11111);
-        Map map = new HashMap();
-        List<User> list = userService.selectAll();
-        map.put("rows", list);
-        return map;
+    public Map selectByPage(int page, int rows) {
+        return userService.selectByPage(page, rows);
     }
 
     @RequestMapping("selectRegisterCount")

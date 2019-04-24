@@ -29,7 +29,6 @@
 <div id="insertChapterDiv">
     <form id="insertChapterForm" enctype="multipart/form-data" method="post">
         <input type="hidden" name="cid" id="cid"/>
-        标题:<input type="text" name="title" id="ctitle"/><br>
         内容:<input type="file" name="file1"/>
     </form>
 </div>
@@ -92,11 +91,13 @@
     }];
     $('#tt_album').treegrid({
         method: 'post',
-        url: '${pageContext.request.contextPath}/album/selectAll',
+        url: '${pageContext.request.contextPath}/album/selectByPage',
         idField: 'id',
         treeField: 'title',
         toolbar: tb,
         pagination: true,
+        pageSize: 3,
+        pageList: [3, 6, 9],
         fit: true,
         fitColumns: true,
         columns: [[

@@ -4,11 +4,10 @@ import com.baizhi.entity.User;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
-import java.util.List;
 import java.util.Map;
 
 public interface UserService {
-    public List<User> selectAll();
+    public Map selectByPage(int page, int rows);
 
     public Integer selectRegisterCount(Integer count);
 

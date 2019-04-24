@@ -19,8 +19,14 @@
         <result column="create_date" property="createDate"/>
         <result column="master_id" property="masterId"/>
     </resultMap>
-    <select id="selectAll" resultMap="p1">
+    <select id="selectByPage" resultMap="p1">
         select *
+        from t_user limit
+             #{page},
+             #{rows}
+    </select>
+    <select id="selectCount" resultType="int">
+        select count(*)
         from t_user
     </select>
     <select id="selectRegisterCount" resultType="int">

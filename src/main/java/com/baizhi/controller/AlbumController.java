@@ -37,11 +37,10 @@ public class AlbumController {
     private BannerService bannerService;
 
     //查询所有专辑
-    @RequestMapping("selectAll")
+    @RequestMapping("selectByPage")
     @ResponseBody
-    public List<Album> selectAll() {
-        List<Album> albums = albumService.selectAll();
-        return albums;
+    public Map selectByPage(int page, int rows) {
+        return albumService.selectByPage(page, rows);
     }
 
     //添加专辑
@@ -153,8 +152,8 @@ public class AlbumController {
         String realPath = session.getServletContext().getRealPath("/audio");
         String fileName = realPath + "/" + downloadPath;
         File file = new File(fileName);
-        String extension = FilenameUtils.getExtension(downloadPath);
-        String oldName = title + "." + extension;
+        /*String extension = FilenameUtils.getExtension(downloadPath);*/
+        String oldName = title/* + "." + extension*/;
         String encode = "";
         try {
             encode = URLEncoder.encode(oldName, "UTF-8");

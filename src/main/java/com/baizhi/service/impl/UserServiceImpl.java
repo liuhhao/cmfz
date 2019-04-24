@@ -19,8 +19,17 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
 
     @Override
-    public List<User> selectAll() {
-        return userDao.selectAll();
+    public Map selectByPage(int page, int rows) {
+        Map map = new HashMap();
+        try {
+            List<User> users = userDao.selectByPage(page * rows - rows, rows);
+            int total = userDao.selectCount();
+            map.put("rows", users);
+            map.put("total", total);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return map;
     }
 
     @Override

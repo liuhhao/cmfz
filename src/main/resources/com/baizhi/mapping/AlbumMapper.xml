@@ -22,6 +22,26 @@
             <result column="download_path" property="downloadPath"/>
         </collection>
     </resultMap>
+    <select id="selectByPage" resultMap="p1">
+        select t1.*,
+               t2.title         title1,
+               t2.publish_date  publish_date1,
+               t2.chapter_id,
+               t2.duration,
+               t2.size,
+               t2.download_path download_path
+        from
+            (select *
+             from t_album LIMIT
+                  #{page},
+                  #{rows}) t1
+                LEFT JOIN t_chapter t2
+                          on t1.album_id = t2.album_id
+    </select>
+    <select id="selectCount" resultType="int">
+        select count(*)
+        from t_album
+    </select>
     <select id="selectAll" resultMap="p1">
         select t1.*,
                t2.title         title1,
